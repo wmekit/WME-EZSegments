@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            WME EZSegments
 // @namespace       https://greasyfork.org/en/scripts/518381-wme-ezsegments
-// @version         5.0
+// @version         5.1
 // @description     Easily update roads
 // @author          https://github.com/michaelrosstarr
 // @include         /^https:\/\/(www|beta)\.waze\.com\/(?!user\/)(.{2,6}\/)?editor.*$/
