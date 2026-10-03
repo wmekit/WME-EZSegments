@@ -1,0 +1,24 @@
+{
+  "name": "wme-ezsegments",
+  "version": "5.0.0",
+  "private": true,
+  "description": "TypeScript source + build for the WME EZSegments Tampermonkey userscript",
+  "type": "module",
+  "scripts": {
+    "compile": "rollup -c",
+    "watch": "rollup -c --watch",
+    "concat": "node scripts/concat.mjs",
+    "build": "npm run compile && npm run concat",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^12.1.0",
+    "@types/geojson": "^7946.0.16",
+    "@types/tampermonkey": "^5.5.0",
+    "prettier": "^3.9.7",
+    "rollup": "^4.63.3",
+    "tslib": "^2.8.1",
+    "typescript": "^5.6.3",
+    "wme-sdk-typings": "https://web-assets.waze.com/wme_sdk_docs/production/latest/wme-sdk-typings.tgz"
+  }
+}
