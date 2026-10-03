@@ -2,9 +2,8 @@ import { log, SCRIPT_VERSION } from './context';
 
 const META_URL = 'https://update.greasyfork.org/scripts/518381/WME%20EZSegments.meta.js';
 const SCRIPT_PAGE = 'https://greasyfork.org/en/scripts/518381-wme-ezsegments';
-export const UPDATE_NOTICE_ID = 'ezroads-update-notice';
-
 let latestVersion: string | null = null;
+let showNotice: ((html: string) => void) | null = null;
 
 // Compares dotted version strings (e.g. "3.9" vs "3.10") segment by segment as
 // numbers, since a plain string/parseFloat compare gets "3.10" < "3.9" wrong.
@@ -21,13 +20,18 @@ export const isNewerVersion = (remote: string, local: string): boolean => {
 
 // Puts an "update available" notice in the settings tab, if it's been rendered yet.
 // Safe to call before the tab exists (e.g. from the update check resolving early) -
-// it just no-ops until the settings tab calls it again once it's built.
-export const renderUpdateNotice = (): void => {
-  const el = document.getElementById(UPDATE_NOTICE_ID);
-  if (!el || !latestVersion) return;
+// it just no-ops until the settings tab hands over its notice setter.
+const renderUpdateNotice = (): void => {
+  if (!showNotice || !latestVersion) return;
+  showNotice(
+    `A new version (v${latestVersion}) is available - <a href="${SCRIPT_PAGE}" target="_blank" rel="noopener">update now</a>`,
+  );
+};
 
-  el.style.display = 'block';
-  el.innerHTML = `A new version (v${latestVersion}) is available - <a href="${SCRIPT_PAGE}" target="_blank" rel="noopener">update now</a>`;
+// Called by the settings tab once it's built, with its header's notice setter.
+export const bindUpdateNotice = (setNotice: (html: string) => void): void => {
+  showNotice = setNotice;
+  renderUpdateNotice();
 };
 
 // Fetches the Greasyfork update metadata (just the userscript header block) and

@@ -10,7 +10,8 @@ The script is written in TypeScript against Waze's official [`wme-sdk-typings`](
 src/*.ts            - the script source (main.user.ts is the entry point)
 header.js           - the userscript metadata block prepended to the release build
 header-dev.js       - dev-mode metadata, @requires the local compiled output
-rollup.config.mjs   - compiles src/main.user.ts -> .out/main.user.js (IIFE)
+rollup.config.mjs   - compiles src/main.user.ts -> .out/main.user.js (IIFE); wmekit-wme-ui is
+                      external (the WMEKitUI global from the header's @require)
 scripts/concat.mjs  - prepends header.js to the compiled output, Prettier-formats it,
                       and writes script.user.js
 ```
@@ -32,6 +33,12 @@ npm run watch       # recompiles .out/main.user.js on save, for local dev
 4. Reload the WME tab to pick up each recompile.
 
 ## Changelogs
+
+### Version 5.2
+```diff
+~ Settings tab now uses the shared wmekit-wme-ui library (loaded with @require from jsDelivr) instead of its own copy of the WME Kit styles
++ Settings tab follows WME's dark mode, using the wmekit.com night palette, and switches live with the editor theme
+```
 
 ### Version 5.1
 ```diff
