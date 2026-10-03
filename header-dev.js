@@ -12,7 +12,7 @@
 // @grant           unsafeWindow
 // @connect         update.greasyfork.org
 // @license         GNU GPL(v3)
-// @require         https://cdn.jsdelivr.net/gh/wmekit/wmekit-wme-ui@1.0.0/dist/wmekit-wme-ui.min.js
+// @require         https://cdn.jsdelivr.net/gh/wmekit/wmekit-wme-ui@b4137432dc75c7a2b1768d08fcd269b0b1148569/dist/wmekit-wme-ui.min.js
 // @require         file:///ABSOLUTE/PATH/TO/WME-EZSegments/.out/main.user.js
 // ==/UserScript==
 
